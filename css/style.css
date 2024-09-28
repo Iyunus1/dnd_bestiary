@@ -1,0 +1,111 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+* {
+  box-sizing: border-box;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+li {
+  list-style: none;
+  text-align: center;
+}
+
+ul {
+  display: flex;
+  gap: 5%;
+  width: 40%;
+  padding: 0;
+}
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+
+.skills,
+.saving-throws {
+  font-weight: 800;
+  font-size: 1.1em;
+}
+
+body {
+  font-family: "Roboto", sans-serif; /* Classic book font */
+  background-color: #f4f1e9; /* Light parchment color */
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.container {
+  width: 80%;
+  max-width: 1000px;
+  background-color: #fffceb; /* Slightly off-white for content */
+  border: 5px solid #8b4513; /* Dark brown leather-like border */
+  padding: 40px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* Gives a 3D effect */
+  border-radius: 10px; /* Rounded edges for a polished look */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.actions,
+.legendary-actions {
+  background-color: #f9f4e6;
+  padding: 10px;
+  border: 2px solid #8b4513;
+  border-radius: 5px;
+  margin: 10px 0;
+  width: 60%;
+  margin: 20px;
+}
+
+.container-danger {
+  background-color: #f9f4e6;
+  padding: 10px;
+  border: 2px solid #ad0b0b;
+  border-radius: 5px;
+  margin: 10px 0;
+  width: 60%;
+  margin: 20px;
+}
+
+.container-unaligned {
+  background-color: #f9f4e6;
+  padding: 10px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  margin: 10px 0;
+  width: 60%;
+  margin: 20px;
+}
+
+.notes-container {
+  display: flex;
+  align-items: start;
+  margin: 20px;
+  gap: 20px;
+}
+
+.bestiary-added {
+  margin: 20px;
+}
+
+.search-creature {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin: 16px 14px;
+}

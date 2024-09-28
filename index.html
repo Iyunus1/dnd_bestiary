@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="This is where your description goes" />
+    <meta name="keywords" content="one, two, three" />
+
+    <title>Title in the tab</title>
+
+    <!-- external CSS link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;00,500;0,700;0,
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <section>
+      <div class="search-creature">
+        <h1>Bestiary</h1>
+        <input type="text" name="" value="" />
+        <button type="button" name="button">Search Bestiary</button>
+        <span class="error"></span>
+      </div>
+
+      <div class="overall-container">
+      <div class="display-creature">
+        <div class="creature-name">
+          <div class="bestiary-added"></div>
+          <h2></h2>
+          <span class="creature-misc"></span>
+        </div>
+        <div class="specs">
+          <p class="armor"></p>
+          <p class="hit-points"></p>
+          <p class="speed"></p>
+        </div>
+      </div>
+      <div class="stat-sheet">
+        <ul>
+          <li>
+            <h4 class="str"></h4>
+            <span class="str-num"></span>
+          </li>
+          <li>
+            <h4 class="dex"></h4>
+            <span class="dex-num"></span>
+          </li>
+          <li>
+            <h4 class="con"></h4>
+            <span class="con-num"></span>
+          </li>
+          <li>
+            <h4 class="int"></h4>
+            <span class="int-num"></span>
+          </li>
+          <li>
+            <h4 class="wis"></h4>
+            <span class="wis-num"></span>
+          </li>
+          <li>
+            <h4 class="cha"></h4>
+            <span class="cha-num"></span>
+          </li>
+        </ul>
+      </div>
+      <section class="attribute-container">
+        <div class="saving-throw-container"></div>
+        <div class="skills-container"></div>
+        <div class="damage-immunity"></div>
+        <div class="condition-immunity"></div>
+        <div class="senses"></div>
+        <div class="languages"></div>
+        <div class="challenge-and-proficiency">
+          <span class="challenge"></span>
+          <span class="proficiency"></span>
+        </div>
+      </section>
+    </section>
+    <section class="special-abilities">
+      <div class="abilities-container"></div>
+    </section>
+    <section class="image">
+      <img src="/api/images/monsters/xorn.png" alt="" />
+      <p class="no-image"></p>
+    </section>
+    <div class="row">
+      <section class="actions">
+        <h3 class="action-title"></h3>
+        <div class="actions-container"></div>
+      </section>
+      <section class="legendary-actions">
+        <h3 class="legendary-action-title"></h3>
+        <div class="legendary-actions-container"></div>
+      </section>
+    </div>
+    <section class="notes-display">
+    </section>
+    <section class="notes-container">
+    </section>
+  </div>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
