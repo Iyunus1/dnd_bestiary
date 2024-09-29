@@ -244,6 +244,7 @@ function getFetch() {
         });
       } else {
         legendaryActionTitle.innerText = "";
+        legendaryActionStyle.classList.remove("legendary-actions");
       }
       // Style for players notes
       notesDisplay.style.background = "white";
