@@ -102,10 +102,56 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 5px;
 }
 
 h1 {
   font-size: 2.5em;
   margin: 16px 14px;
+}
+
+button {
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  border: 2px solid #1b9af0;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.notes-container button {
+  border-color: green;
+}
+
+input {
+  padding: 13px;
+  width: 500px;
+  height: 40px;
+  font-size: 1.2em;
+  margin: 0 30px;
+  border: 0;
+}
+
+.bold-text {
+  font-weight: 800;
+}
+
+.strong {
+  font-weight: 700;
+}
+
+.special-abilities {
+  margin: 20px 0px;
+}
+
+.abilities-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.actions-container {
+  margin-bottom: 15px;
 }

@@ -37,7 +37,7 @@ function addToBestiary(monsterName) {
 
   const storeMonsterButton = document.createElement("button");
   storeMonsterButton.type = "button";
-  storeMonsterButton.textContent = "Add To Bestiary";
+  storeMonsterButton.textContent = " Add To Bestiary";
   storeMonsterButton.classList.add("store-monster-button");
   searchContainer.appendChild(storeMonsterButton);
 
@@ -108,12 +108,13 @@ function getFetch() {
       document.querySelector(".condition-immunity").innerText = "";
       document.querySelector(".damage-immunity").innerText = "";
       document.querySelector(".languages").innerText = "";
+      document.querySelector(".damage").innerText = "";
+      document.querySelector(".condition").innerText = "";
 
       notesDisplay.innerText = "";
 
-      // clearMonster();
-
       document.querySelector("h2").innerText = data.name;
+      document.querySelector("h2").style.textDecoration = "underline";
 
       addToBestiary(data.name);
 
@@ -157,7 +158,7 @@ function getFetch() {
       // Monster specification
       document.querySelector(
         ".armor"
-      ).innerText = `Armor Class ${data.armor_class[0].value} (${data.armor_class[0].type} armor)`;
+      ).innerText = `Armor Class  ${data.armor_class[0].value} (${data.armor_class[0].type} armor)`;
       document.querySelector(
         ".hit-points"
       ).innerText = `Hit Points: ${data.hit_points} ${data.hit_points_roll}`;
@@ -202,34 +203,62 @@ function getFetch() {
 
       objectPropertyDom(data.senses, "Senses ", ".senses");
 
-      document.querySelector(
-        ".languages"
-      ).innerText = `Language ${data.languages}`;
+      // Languages
+      document.querySelector(".languages-bold").innerText = "Language";
+      document.querySelector(".languages").innerText = data.languages;
 
+      // Challenge rating, exp and profeciency
+      document.querySelector(".challenge-bold").innerText = "Challenge";
       document.querySelector(
         ".challenge"
-      ).innerText = `Challenge ${data.challenge_rating} (${data.xp})`;
-
+      ).innerText = ` ${data.challenge_rating} (${data.xp} XP)`;
+      document.querySelector(".proficiency-bold").innerText = "Proficiency";
       document.querySelector(
         ".proficiency"
-      ).innerText = `Proficiency ${data.proficiency_bonus}`;
+      ).innerText = `+${data.proficiency_bonus}`;
 
       // Get Special Abilities
       data.special_abilities.forEach((ability) => {
-        const p = document.createElement("p");
-        p.classList = "ability";
-        p.innerText = `${ability.name} ${ability.desc}`;
-        abilitiesContainer.appendChild(p);
+        // Create div to store all html elements of special abilities
+        const div = document.createElement("div");
+        div.classList = "special-abilities-container";
+
+        abilitiesContainer.appendChild(div);
+        // Create the span element and attach to the newly created div the span element for the ability name
+        const spanName = document.createElement("span");
+        spanName.classList = "ability-name";
+        spanName.style.fontStyle = "italic";
+        spanName.classList.add("strong");
+        spanName.innerText = `${ability.name}. `;
+
+        div.appendChild(spanName);
+
+        // Create the span element and attach to the newly created div the span element for the description
+        const spanDesc = document.createElement("span");
+        spanDesc.classList = "ability-desc";
+        spanDesc.innerText = ability.desc;
+
+        div.appendChild(spanDesc);
       });
 
       // Get Actions
       actionStyle.classList.add("actions");
       actionTitle.innerText = "Actions";
       data.actions.forEach((action) => {
-        const p = document.createElement("p");
-        p.classList = "action";
-        p.innerText = `${action.name} ${action.desc}`;
-        actionsContainer.appendChild(p);
+        const div = document.createElement("div");
+        div.classList = "actions-container";
+        actionsContainer.appendChild(div);
+
+        const spanName = document.createElement("span");
+        spanName.classList = "action-name";
+        spanName.classList.add("strong");
+        spanName.innerText = `${action.name}. `;
+        div.appendChild(spanName);
+
+        const spanDesc = document.createElement("span");
+        spanDesc.classList = "action-desc";
+        spanDesc.innerText = action.desc;
+        div.appendChild(spanDesc);
       });
 
       // Get Legendary Actions
@@ -300,6 +329,7 @@ function getSkills(data) {
 
 function conditionLoops(data, stringValue, htmlElement) {
   // Damage Immunities
+
   document.querySelector(`${htmlElement}`).innerText = "";
 
   let conditionImmunityArray = [];
@@ -309,9 +339,10 @@ function conditionLoops(data, stringValue, htmlElement) {
   });
 
   if (conditionImmunityArray.length > 0) {
+    document.querySelector(".condition").innerText = `${stringValue}`;
     document.querySelector(
       `${htmlElement}`
-    ).innerText = `${stringValue} ${conditionImmunityArray.join(", ")}`;
+    ).innerText = ` ${conditionImmunityArray.join(", ")}`;
   }
 }
 
@@ -320,9 +351,10 @@ function getObjectValue(data, stringValue, htmlElement) {
   const immunityArray = Object.values(data);
 
   if (immunityArray.length > 0) {
-    document.querySelector(
-      `${htmlElement}`
-    ).innerText = `${stringValue} ${immunityArray.join(", ")}`;
+    document.querySelector(`.damage`).innerText = `${stringValue}`;
+    document.querySelector(`${htmlElement}`).innerText = `${immunityArray.join(
+      ", "
+    )}`;
   }
 }
 
@@ -338,7 +370,8 @@ function objectPropertyDom(data, stringValue, htmlElement) {
   }
 
   if (objectArr.length > 0) {
-    container.innerText = `${stringValue} ${objectArr.join(", ")} `;
+    document.querySelector(".senses-bold").innerText = `${stringValue}`;
+    container.innerText = ` ${objectArr.join(", ")} `;
   }
 }
 // Handles the note taking and saving to each specific monster allowing an edit aswell
