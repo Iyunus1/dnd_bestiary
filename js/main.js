@@ -156,15 +156,18 @@ function getFetch() {
       }
 
       // Monster specification
+      document.querySelector(".armor-name").innerText = "Armor Class";
       document.querySelector(
         ".armor"
-      ).innerText = `Armor Class  ${data.armor_class[0].value} (${data.armor_class[0].type} armor)`;
+      ).innerText = ` ${data.armor_class[0].value} (${data.armor_class[0].type} armor)`;
+
+      document.querySelector(".hitpoints-name").innerText = "Hit Points";
       document.querySelector(
         ".hit-points"
-      ).innerText = `Hit Points: ${data.hit_points} ${data.hit_points_roll}`;
+      ).innerText = ` ${data.hit_points} ${data.hit_points_roll}`;
 
       // Creates span element with monsters speed
-      objectPropertyDom(data.speed, "Speed: ", ".speed");
+      objectPropertyDom(data.speed, "Speed: ", ".speed", ".speed-name");
 
       // Monsters attributes
       document.querySelector(".str").innerText = `STR`;
@@ -201,7 +204,7 @@ function getFetch() {
         ".condition-immunity"
       );
 
-      objectPropertyDom(data.senses, "Senses ", ".senses");
+      objectPropertyDom(data.senses, "Senses ", ".senses", ".senses-bold");
 
       // Languages
       document.querySelector(".languages-bold").innerText = "Language";
@@ -358,7 +361,7 @@ function getObjectValue(data, stringValue, htmlElement) {
   }
 }
 
-function objectPropertyDom(data, stringValue, htmlElement) {
+function objectPropertyDom(data, stringValue, htmlElement, className) {
   let objectArr = [];
 
   const container = document.querySelector(htmlElement);
@@ -370,7 +373,7 @@ function objectPropertyDom(data, stringValue, htmlElement) {
   }
 
   if (objectArr.length > 0) {
-    document.querySelector(".senses-bold").innerText = `${stringValue}`;
+    document.querySelector(className).innerText = `${stringValue}`;
     container.innerText = ` ${objectArr.join(", ")} `;
   }
 }

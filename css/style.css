@@ -155,3 +155,14 @@ input {
 .actions-container {
   margin-bottom: 15px;
 }
+
+.specs {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+h2 {
+  margin: 0 0 5px 0;
+}
