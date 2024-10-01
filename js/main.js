@@ -39,7 +39,8 @@ function addToBestiary(monsterName) {
   storeMonsterButton.type = "button";
   storeMonsterButton.textContent = " Add To Bestiary";
   storeMonsterButton.classList.add("store-monster-button");
-  searchContainer.appendChild(storeMonsterButton);
+  // searchContainer.appendChild(storeMonsterButton);
+  document.querySelector(".creature-name").appendChild(storeMonsterButton);
 
   storeMonsterButton.addEventListener("click", () => {
     if (!localStorage.getItem(`monster_${monsterName}`)) {
@@ -220,60 +221,38 @@ function getFetch() {
         ".proficiency"
       ).innerText = `+${data.proficiency_bonus}`;
 
-      // Get Special Abilities
-      data.special_abilities.forEach((ability) => {
-        // Create div to store all html elements of special abilities
-        const div = document.createElement("div");
-        div.classList = "special-abilities-container";
-
-        abilitiesContainer.appendChild(div);
-        // Create the span element and attach to the newly created div the span element for the ability name
-        const spanName = document.createElement("span");
-        spanName.classList = "ability-name";
-        spanName.style.fontStyle = "italic";
-        spanName.classList.add("strong");
-        spanName.innerText = `${ability.name}. `;
-
-        div.appendChild(spanName);
-
-        // Create the span element and attach to the newly created div the span element for the description
-        const spanDesc = document.createElement("span");
-        spanDesc.classList = "ability-desc";
-        spanDesc.innerText = ability.desc;
-
-        div.appendChild(spanDesc);
-      });
+      // Special Abilities Monster
+      apiToDom(
+        data.special_abilities,
+        "special-abilities-container",
+        "ability-name",
+        "ability.desc",
+        abilitiesContainer
+      );
 
       // Get Actions
       actionStyle.classList.add("actions");
       actionTitle.innerText = "Actions";
-      data.actions.forEach((action) => {
-        const div = document.createElement("div");
-        div.classList = "actions-container";
-        actionsContainer.appendChild(div);
-
-        const spanName = document.createElement("span");
-        spanName.classList = "action-name";
-        spanName.classList.add("strong");
-        spanName.innerText = `${action.name}. `;
-        div.appendChild(spanName);
-
-        const spanDesc = document.createElement("span");
-        spanDesc.classList = "action-desc";
-        spanDesc.innerText = action.desc;
-        div.appendChild(spanDesc);
-      });
+      apiToDom(
+        data.actions,
+        "actions-container",
+        "action-name",
+        "action-desc",
+        actionsContainer
+      );
 
       // Get Legendary Actions
       if (data.legendary_actions.length > 0) {
         legendaryActionStyle.classList.add("legendary-actions");
         legendaryActionTitle.innerText = "Legendary Actions";
-        data.legendary_actions.forEach((specialAction) => {
-          const p = document.createElement("p");
-          p.classList = "Legendary-action";
-          p.innerText = `${specialAction.name} ${specialAction.desc}`;
-          legendaryActionsContainer.appendChild(p);
-        });
+
+        apiToDom(
+          data.legendary_actions,
+          "legendary-actions-container",
+          "legendary-action-name",
+          "legendary-action-desc",
+          legendaryActionsContainer
+        );
       } else {
         legendaryActionTitle.innerText = "";
         legendaryActionStyle.classList.remove("legendary-actions");
@@ -288,6 +267,27 @@ function getFetch() {
       document.querySelector(".error").innerText =
         "Please Enter A Valid Monster";
     });
+}
+
+function apiToDom(data, divClass, nameClass, descClass, container) {
+  data.forEach((ability) => {
+    // Create div to store all html elements of special abilities
+    const div = document.createElement("div");
+    div.classList = divClass;
+    container.appendChild(div);
+    // Create the span element and attach to the newly created div the span element for the ability name
+    const spanName = document.createElement("span");
+    spanName.classList = nameClass;
+    spanName.classList.add("strong");
+    spanName.innerText = `${ability.name}. `;
+    div.appendChild(spanName);
+
+    // Create the span element and attach to the newly created div the span element for the description
+    const spanDesc = document.createElement("span");
+    spanDesc.classList = descClass;
+    spanDesc.innerText = ability.desc;
+    div.appendChild(spanDesc);
+  });
 }
 
 function getSkills(data) {
