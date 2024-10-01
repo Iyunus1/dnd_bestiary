@@ -56,11 +56,10 @@ body {
   margin-bottom: 20px;
 }
 
-.actions,
-.legendary-actions {
+.container-style {
   background-color: #f9f4e6;
   padding: 10px;
-  border: 2px solid #8b4513;
+  border: 2px solid #aa5417;
   border-radius: 5px;
   margin: 10px 0;
   width: 60%;
@@ -184,4 +183,14 @@ h2 {
 .creature-name > button {
   border-color: orange;
   margin-top: 8px;
+}
+
+.action-title,
+.legendary-action-title {
+  font-size: 1.5em;
+  margin-bottom: 12px;
+}
+
+.notes-display {
+  font-size: 1.3em;
 }

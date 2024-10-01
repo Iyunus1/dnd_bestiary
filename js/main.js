@@ -231,7 +231,7 @@ function getFetch() {
       );
 
       // Get Actions
-      actionStyle.classList.add("actions");
+      actionStyle.classList.add("container-style");
       actionTitle.innerText = "Actions";
       apiToDom(
         data.actions,
@@ -243,7 +243,7 @@ function getFetch() {
 
       // Get Legendary Actions
       if (data.legendary_actions.length > 0) {
-        legendaryActionStyle.classList.add("legendary-actions");
+        legendaryActionStyle.classList.add("container-style");
         legendaryActionTitle.innerText = "Legendary Actions";
 
         apiToDom(
@@ -255,10 +255,10 @@ function getFetch() {
         );
       } else {
         legendaryActionTitle.innerText = "";
-        legendaryActionStyle.classList.remove("legendary-actions");
+        legendaryActionStyle.classList.remove("container-style");
       }
-      // Style for players notes
-      notesDisplay.style.background = "white";
+      //style for players notes here
+      notesDisplay.style.background;
       // Stop
     })
 
@@ -269,7 +269,7 @@ function getFetch() {
     });
 }
 
-function apiToDom(data, divClass, nameClass, descClass, container) {
+const apiToDom = (data, divClass, nameClass, descClass, container) => {
   data.forEach((ability) => {
     // Create div to store all html elements of special abilities
     const div = document.createElement("div");
@@ -288,7 +288,7 @@ function apiToDom(data, divClass, nameClass, descClass, container) {
     spanDesc.innerText = ability.desc;
     div.appendChild(spanDesc);
   });
-}
+};
 
 function getSkills(data) {
   // Saving Throws
@@ -381,6 +381,7 @@ function objectPropertyDom(data, stringValue, htmlElement, className) {
 function createTextArea(monster) {
   const theMonster = monster;
   // Create text area
+  document.querySelector(".note-saved-message").innerText = "";
   textAreaContainer.innerText = "";
 
   const textArea = document.createElement("textarea");
@@ -409,15 +410,19 @@ function createTextArea(monster) {
     textArea.disabled = true;
     button.disabled = true;
     editButton.style.display = "inline";
+    button.style.display = "none";
   }
 
   button.addEventListener("click", saveValue);
   editButton.addEventListener("click", editNote);
 
   function editNote() {
+    document.querySelector(".note-saved-message").innerText = "";
     textArea.disabled = false;
     button.disabled = false;
-    button.textContent = "Save Edited Note";
+    button.textContent = "Save Note";
+    button.style.display = "inline";
+    editButton.style.display = "none";
   }
 
   function saveValue() {
@@ -429,12 +434,18 @@ function createTextArea(monster) {
       localStorage.setItem(`${theMonster}`, noteText);
       textArea.disabled = true;
       button.disabled = true;
-      button.textContent = "Note Saved";
+      button.style.display = "none";
+      document.querySelector(".note-saved-message").innerText =
+        "Note Has Been Saved";
       editButton.style.display = "inline";
     } else {
       localStorage.setItem(`${theMonster}`, noteText);
       textArea.disabled = true;
       button.disabled = true;
+      button.style.display = "none";
+      editButton.style.display = "inline";
+      document.querySelector(".note-saved-message").innerText =
+        "Note Has Been Edited";
     }
   }
 }
