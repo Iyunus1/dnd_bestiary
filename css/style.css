@@ -177,12 +177,12 @@ h2 {
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .creature-name > button {
   border-color: orange;
-  margin-top: 8px;
+  margin: 3px 0 0 30px;
 }
 
 .action-title,
@@ -193,4 +193,13 @@ h2 {
 
 .notes-display {
   font-size: 1.3em;
+}
+
+.attribute-container {
+  border-top: #ad0b0b 2px solid;
+  border-bottom: #ad0b0b 2px solid;
+  display: flex;
+  flex-direction: column;
+  padding: 23px 0px;
+  gap: 3px;
 }
