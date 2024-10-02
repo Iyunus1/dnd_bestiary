@@ -91,7 +91,8 @@ function loadSavedMonster() {
 
     // Create a container which will store the monsters name and notes
   } else {
-    bestiaryAdded.innerText = "No monsters in your Bestiary";
+    bestiaryAdded.innerText =
+      "Search for monsters and add them to your bestiary!";
   }
 }
 
@@ -257,7 +258,7 @@ function getFetch() {
       );
 
       // Get Actions
-      actionStyle.classList.add("container-style");
+
       actionTitle.innerText = "Actions";
       apiToDom(
         data.actions,
@@ -269,7 +270,6 @@ function getFetch() {
 
       // Get Legendary Actions
       if (data.legendary_actions.length > 0) {
-        legendaryActionStyle.classList.add("container-style");
         legendaryActionTitle.innerText = "Legendary Actions";
 
         apiToDom(

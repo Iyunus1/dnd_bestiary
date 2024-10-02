@@ -211,3 +211,19 @@ ul,
 ul h4 {
   margin: 0;
 }
+
+.display-creature {
+  margin-bottom: 12px;
+}
+
+.display-notes {
+  margin-left: 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.monster-card {
+  max-width: 20%;
+  flex: 1;
+}
