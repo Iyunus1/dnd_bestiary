@@ -195,11 +195,19 @@ h2 {
   font-size: 1.3em;
 }
 
-.attribute-container {
+.border {
   border-top: #ad0b0b 2px solid;
   border-bottom: #ad0b0b 2px solid;
+  padding: 35px 0px;
+}
+
+.attribute-container {
   display: flex;
   flex-direction: column;
-  padding: 23px 0px;
   gap: 3px;
+}
+
+ul,
+ul h4 {
+  margin: 0;
 }

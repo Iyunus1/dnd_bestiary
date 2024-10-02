@@ -7,6 +7,7 @@ const skillsContainer = document.querySelector(".skills-container");
 const abilitiesContainer = document.querySelector(".abilities-container");
 const actionsContainer = document.querySelector(".actions-container");
 let searchContainer = document.querySelector(".search-creature");
+let displayNotesContainer = document.querySelector(".display-notes");
 
 const legendaryActionsContainer = document.querySelector(
   ".legendary-actions-container"
@@ -64,6 +65,22 @@ function loadSavedMonster() {
     if (key.startsWith("monster_")) {
       const monsterName = localStorage.getItem(key);
       savedMonsters.push(monsterName);
+      const note =
+        localStorage.getItem(monsterName) || "No notes for this monster";
+
+      const container = document.createElement("div");
+      container.classList = "monster-card";
+      displayNotesContainer.appendChild(container);
+
+      const displayMonsterName = document.createElement("h2");
+      displayMonsterName.classList = "monster-name";
+      displayMonsterName.innerText = monsterName;
+      container.appendChild(displayMonsterName);
+
+      const displayMonsterNotes = document.createElement("p");
+      displayMonsterNotes.classList = "monster.note";
+      displayMonsterNotes.innerText = note;
+      container.appendChild(displayMonsterNotes);
     }
   }
 
@@ -71,6 +88,8 @@ function loadSavedMonster() {
     bestiaryAdded.innerText = `Monsters In Bestiary: ${savedMonsters.join(
       ", "
     )}`;
+
+    // Create a container which will store the monsters name and notes
   } else {
     bestiaryAdded.innerText = "No monsters in your Bestiary";
   }
@@ -104,6 +123,7 @@ function getFetch() {
       abilitiesContainer.innerText = "";
       actionsContainer.innerText = "";
       legendaryActionsContainer.innerText = "";
+      displayNotesContainer.innerText = "";
 
       actionTitle.innerText = "";
       document.querySelector(".condition-immunity").innerText = "";
@@ -116,6 +136,10 @@ function getFetch() {
 
       document.querySelector("h2").innerText = data.name;
       document.querySelector("h2").style.textDecoration = "underline";
+
+      document
+        .querySelector(".whole-container")
+        .classList.add("container-style");
 
       addToBestiary(data.name);
 
@@ -171,6 +195,7 @@ function getFetch() {
       objectPropertyDom(data.speed, "Speed: ", ".speed", ".speed-name");
 
       // Monsters attributes
+      document.querySelector(".stat-sheet").classList.add("border");
       document.querySelector(".str").innerText = `STR`;
       document.querySelector(".str-num").innerText = data.strength;
 
@@ -222,6 +247,7 @@ function getFetch() {
       ).innerText = `+${data.proficiency_bonus}`;
 
       // Special Abilities Monster
+      document.querySelector(".special-abilities").classList.add("border");
       apiToDom(
         data.special_abilities,
         "special-abilities-container",
