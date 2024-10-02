@@ -75,12 +75,20 @@ function loadSavedMonster() {
       const displayMonsterName = document.createElement("h2");
       displayMonsterName.classList = "monster-name";
       displayMonsterName.innerText = monsterName;
+      displayMonsterName.style.cursor = "pointer";
       container.appendChild(displayMonsterName);
 
       const displayMonsterNotes = document.createElement("p");
       displayMonsterNotes.classList = "monster.note";
       displayMonsterNotes.innerText = note;
       container.appendChild(displayMonsterNotes);
+
+      // When clicking
+      displayMonsterName.addEventListener("click", (e) => {
+        const text = e.target.innerText;
+        console.log(text);
+        document.querySelector("input").value = text;
+      });
     }
   }
 
