@@ -152,6 +152,12 @@ function getFetch() {
 
       addToBestiary(data.name);
 
+      // Bestiary title, when clicked returns users reload and monsters in index
+      document.querySelector(".home").style.cursor = "pointer";
+      document.querySelector(".home").addEventListener("click", () => {
+        location.reload();
+      });
+
       // Notes
 
       createTextArea(data.name);

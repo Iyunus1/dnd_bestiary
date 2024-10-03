@@ -219,7 +219,7 @@ ul h4 {
 .display-notes {
   margin-left: 20px;
   display: flex;
-  gap: 5%;
+  gap: 3%;
   flex-wrap: wrap;
 }
 
