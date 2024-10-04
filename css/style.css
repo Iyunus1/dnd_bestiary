@@ -224,11 +224,23 @@ ul h4 {
 }
 
 .monster-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 20%;
   margin-top: 15px;
   border: 2px solid black;
-  padding: 16px 10px;
+  padding: 20px;
+  background-color: #f4e9d8; /* parchment-style background */
   text-align: center;
+  border-radius: 12px;
+  max-width: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.monster-card:hover {
+  transform: scale(1.03);
 }
 
 .monster-card > p {
@@ -242,5 +254,27 @@ ul h4 {
 }
 
 .monster-card > h2 {
+  font-family: "Uncial Antiqua", cursive;
   font-size: 1.4em;
+}
+
+.monster-remove:hover {
+  text-decoration: underline;
+}
+
+.monster-note {
+  font-family: "Merriweather", serif;
+  font-size: 16px;
+  color: #333;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* subtle background for contrast */
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 12px;
+  width: 100%;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* subtle inner shadow for depth */
 }
