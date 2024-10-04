@@ -219,11 +219,28 @@ ul h4 {
 .display-notes {
   margin-left: 20px;
   display: flex;
-  gap: 3%;
+  gap: 1.2%;
   flex-wrap: wrap;
 }
 
 .monster-card {
   max-width: 20%;
   margin-top: 15px;
+  border: 2px solid black;
+  padding: 16px 10px;
+  text-align: center;
+}
+
+.monster-card > p {
+  font-size: 1em;
+}
+
+.monster-remove {
+  text-align: end;
+  cursor: pointer;
+  font-size: 0.8em;
+}
+
+.monster-card > h2 {
+  font-size: 1.4em;
 }

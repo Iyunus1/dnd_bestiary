@@ -79,9 +79,14 @@ function loadSavedMonster() {
       container.appendChild(displayMonsterName);
 
       const displayMonsterNotes = document.createElement("p");
-      displayMonsterNotes.classList = "monster.note";
+      displayMonsterNotes.classList = "monster-note";
       displayMonsterNotes.innerText = note;
       container.appendChild(displayMonsterNotes);
+
+      const removeMonster = document.createElement("a");
+      removeMonster.classList = "monster-remove";
+      removeMonster.innerText = "Remove";
+      container.appendChild(removeMonster);
 
       // When clicking
       displayMonsterName.addEventListener("click", (e) => {
@@ -89,18 +94,27 @@ function loadSavedMonster() {
         console.log(text);
         document.querySelector("input").value = text;
       });
+
+      // When clicking remove button
+      removeMonster.addEventListener("click", () => {
+        localStorage.removeItem(key);
+        localStorage.removeItem(monsterName);
+        container.remove();
+        bestiaryAdded.innerText = `You have removed ${monsterName}`;
+        console.log(localStorage.length);
+
+        if (localStorage.length <= 0) {
+          bestiaryAdded.innerText =
+            "All Monsters Have Been Removed From The Bestiary";
+        }
+      });
     }
   }
 
-  if (savedMonsters.length > 0) {
-    bestiaryAdded.innerText = `Monsters In Bestiary: ${savedMonsters.join(
-      ", "
-    )}`;
-
-    // Create a container which will store the monsters name and notes
-  } else {
+  if (!savedMonsters.length > 0) {
+    // bestiaryAdded.innerText = `Monsters In Bestiary: ${savedMonsters.join(", ")}`;
     bestiaryAdded.innerText =
-      "Search for monsters and add them to your bestiary!";
+      "Either search for a monster to add to your index or Add the monsters with your notes to the index";
   }
 }
 
