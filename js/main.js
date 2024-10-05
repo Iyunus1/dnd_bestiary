@@ -28,7 +28,7 @@ let savedMonsters = [];
 
 document.querySelector("button").addEventListener("click", getFetch);
 
-function addToBestiary(monsterName) {
+function addToBestiary(monsterName, monsteralignment) {
   bestiaryAdded.innerText = "";
 
   let existingButton = document.querySelector(".store-monster-button");
@@ -46,6 +46,7 @@ function addToBestiary(monsterName) {
   storeMonsterButton.addEventListener("click", () => {
     if (!localStorage.getItem(`monster_${monsterName}`)) {
       localStorage.setItem(`monster_${monsterName}`, monsterName);
+      localStorage.setItem(`alignment_${monsterName}`, monsteralignment);
 
       bestiaryAdded.innerText = `${monsterName} has been added to your bestiary`;
     } else {
@@ -60,13 +61,15 @@ function loadSavedMonster() {
   savedMonsters = [];
 
   for (const [key, value] of Object.entries(localStorage)) {
-    console.log(`${key}, ${value}`);
+    //console.log(`${key}, ${value}`);
 
     if (key.startsWith("monster_")) {
       const monsterName = localStorage.getItem(key);
       savedMonsters.push(monsterName);
       const note =
         localStorage.getItem(monsterName) || "No notes for this monster";
+      const alignment = localStorage.getItem(`alignment_${monsterName}`);
+      console.log(alignment);
 
       const container = document.createElement("div");
       container.classList = "monster-card";
@@ -99,15 +102,24 @@ function loadSavedMonster() {
       removeMonster.addEventListener("click", () => {
         localStorage.removeItem(key);
         localStorage.removeItem(monsterName);
+        localStorage.removeItem(`alignment_${monsterName}`);
         container.remove();
         bestiaryAdded.innerText = `You have removed ${monsterName}`;
         console.log(localStorage.length);
-
-        if (localStorage.length <= 0) {
-          bestiaryAdded.innerText =
-            "All Monsters Have Been Removed From The Bestiary";
-        }
       });
+
+      if (alignment.includes("evil") || alignment.includes("non-good")) {
+        container.style.borderColor = "red";
+      } else if (alignment.includes("good")) {
+        container.style.borderColor = "green";
+      } else if (alignment.includes("neutral")) {
+        container.style.borderColor = "gray";
+      } else if (
+        alignment.includes("any alignment") ||
+        alignment.includes("unaligned")
+      ) {
+        container.style.border = "dashed  gray";
+      }
     }
   }
 
@@ -164,7 +176,7 @@ function getFetch() {
         .querySelector(".whole-container")
         .classList.add("container-style");
 
-      addToBestiary(data.name);
+      addToBestiary(data.name, data.alignment);
 
       // Bestiary title, when clicked returns users reload and monsters in index
       document.querySelector(".home").style.cursor = "pointer";
@@ -460,6 +472,7 @@ function createTextArea(monster) {
 
   if (savedNote) {
     notesDisplay.innerText = savedNote;
+    notesDisplay.classList.add("border");
     textArea.value = savedNote;
     textArea.disabled = true;
     button.disabled = true;
