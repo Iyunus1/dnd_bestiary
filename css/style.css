@@ -286,3 +286,18 @@ ul h4 {
   font-size: 3em;
   margin-right: 0;
 }
+
+.monster-image {
+  width: 25%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+.remove-all {
+  background-color: #d10e0e;
+  color: white;
+  border: black;
+  border-radius: 18px;
+}

@@ -94,7 +94,6 @@ function loadSavedMonster() {
       // When clicking
       displayMonsterName.addEventListener("click", (e) => {
         const text = e.target.innerText;
-        console.log(text);
         document.querySelector("input").value = text;
       });
 
@@ -122,13 +121,25 @@ function loadSavedMonster() {
       }
     }
   }
-
+  // Adds the remove all button
   if (!savedMonsters.length > 0) {
     // bestiaryAdded.innerText = `Monsters In Bestiary: ${savedMonsters.join(", ")}`;
     bestiaryAdded.innerText =
       "Either search for a monster to add to your index or Add the monsters with your notes to the index";
+  } else {
+    const removeAll = document.createElement("button");
+    removeAll.classList.add("remove-all");
+    removeAll.textContent = "Reset Bestiary";
+    bestiaryAdded.appendChild(removeAll);
+    removeAll.addEventListener("click", () => {
+      localStorage.clear();
+      bestiaryAdded.innerText = "";
+      displayNotesContainer.innerText = "";
+    });
   }
 }
+
+console.log(savedMonsters.length);
 
 function getFetch() {
   const choice = document.querySelector("input").value;
@@ -214,8 +225,14 @@ function getFetch() {
       // Display Image, if no image display a question mark and say it hasn't been discovered by the beastiary
       if (data.image) {
         document.querySelector(".no-image").innerText = "";
-        document.querySelector("img").src = "url(`${data.image}`)";
+        document.querySelector(
+          "img"
+        ).src = `https://www.dnd5eapi.co${data.image}`;
+        document.querySelector("img").alt = `${data.name} image`;
+        document.querySelector("img").classList.add("monster-image");
       } else {
+        document.querySelector("img").src = "";
+        document.querySelector("img").alt = "";
         // Insert a picture to display there is no entry
         document.querySelector(".no-image").innerText =
           "There is no picture of this creature in the bestiary";
