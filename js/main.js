@@ -194,8 +194,8 @@ function getFetch() {
       document.querySelector(".languages").innerText = "";
       document.querySelector(".damage").innerText = "";
       document.querySelector(".condition").innerText = "";
-
-      notesDisplay.innerText = "";
+      document.querySelector(".note-text").innerText = notesDisplay.innerText =
+        "";
 
       document.querySelector("h2").innerText = data.name;
       document.querySelector("h2").style.textDecoration = "underline";
@@ -225,20 +225,7 @@ function getFetch() {
           ".creature-misc"
         ).innerText = `${data.size} ${data.type}, ${data.alignment}`;
       }
-      // Maniplulate dom depending on monsters alignment
-      if (data.alignment.includes("evil")) {
-        document
-          .querySelector(".display-creature")
-          .classList.add("container-danger");
-      } else if (data.alignment === "unaligned") {
-        document
-          .querySelector(".display-creature")
-          .classList.remove("container-danger");
 
-        document
-          .querySelector(".display-creature")
-          .classList.add(".container-unaligned");
-      }
       // Display Image, if no image display a question mark and say it hasn't been discovered by the beastiary
       if (data.image) {
         document.querySelector(".no-image").innerText = "";
