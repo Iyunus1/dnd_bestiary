@@ -113,8 +113,11 @@ function loadSavedMonster() {
         localStorage.removeItem(key);
         localStorage.removeItem(monsterName);
         localStorage.removeItem(`alignment_${monsterName}`);
+        localStorage.removeItem(`image_${monsterName}`);
         container.remove();
-        bestiaryAdded.innerText = `You have removed ${monsterName}`;
+        document.querySelector(
+          ".note-text"
+        ).innerText = `You have removed ${monsterName}`;
         console.log(localStorage.length);
       });
 
@@ -146,6 +149,9 @@ function loadSavedMonster() {
       localStorage.clear();
       bestiaryAdded.innerText = "";
       displayNotesContainer.innerText = "";
+      document.querySelector(
+        ".note-text"
+      ).innerText = `You have reset the bestiary`;
     });
   }
 }

@@ -310,3 +310,8 @@ ul h4 {
   border: black;
   border-radius: 18px;
 }
+
+.note-text {
+  font-size: 1.4em;
+  margin-left: 50px;
+}
