@@ -28,7 +28,7 @@ let savedMonsters = [];
 
 document.querySelector("button").addEventListener("click", getFetch);
 
-function addToBestiary(monsterName, monsteralignment) {
+function addToBestiary(monsterName, monsteralignment, monsterimage) {
   bestiaryAdded.innerText = "";
 
   let existingButton = document.querySelector(".store-monster-button");
@@ -47,6 +47,7 @@ function addToBestiary(monsterName, monsteralignment) {
     if (!localStorage.getItem(`monster_${monsterName}`)) {
       localStorage.setItem(`monster_${monsterName}`, monsterName);
       localStorage.setItem(`alignment_${monsterName}`, monsteralignment);
+      localStorage.setItem(`image_${monsterName}`, monsterimage);
 
       bestiaryAdded.innerText = `${monsterName} has been added to your bestiary`;
     } else {
@@ -70,6 +71,7 @@ function loadSavedMonster() {
         localStorage.getItem(monsterName) || "No notes for this monster";
       const alignment = localStorage.getItem(`alignment_${monsterName}`);
       console.log(alignment);
+      const image = localStorage.getItem(`image_${monsterName}`);
 
       const container = document.createElement("div");
       container.classList = "monster-card";
@@ -80,6 +82,15 @@ function loadSavedMonster() {
       displayMonsterName.innerText = monsterName;
       displayMonsterName.style.cursor = "pointer";
       container.appendChild(displayMonsterName);
+
+      const displayMonsterImage = document.createElement("img");
+      displayMonsterImage.classList = "monster-thumbnail";
+      if (image) {
+        displayMonsterImage.src = `https://www.dnd5eapi.co${image}`;
+      } else {
+        displayMonsterImage.src = ``;
+      }
+      container.appendChild(displayMonsterImage);
 
       const displayMonsterNotes = document.createElement("p");
       displayMonsterNotes.classList = "monster-note";
@@ -187,7 +198,7 @@ function getFetch() {
         .querySelector(".whole-container")
         .classList.add("container-style");
 
-      addToBestiary(data.name, data.alignment);
+      addToBestiary(data.name, data.alignment, data.image);
 
       // Bestiary title, when clicked returns users reload and monsters in index
       document.querySelector(".home").style.cursor = "pointer";
