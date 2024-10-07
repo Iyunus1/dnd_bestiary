@@ -8,6 +8,7 @@ const abilitiesContainer = document.querySelector(".abilities-container");
 const actionsContainer = document.querySelector(".actions-container");
 let searchContainer = document.querySelector(".search-creature");
 let displayNotesContainer = document.querySelector(".display-notes");
+const noteStrong = document.querySelector(".note-bold");
 
 const legendaryActionsContainer = document.querySelector(
   ".legendary-actions-container"
@@ -49,8 +50,14 @@ function addToBestiary(monsterName, monsteralignment, monsterimage) {
       localStorage.setItem(`alignment_${monsterName}`, monsteralignment);
       localStorage.setItem(`image_${monsterName}`, monsterimage);
 
+      bestiaryAdded.classList.remove("alert-add-bestiary");
+      bestiaryAdded.classList.add("confirm-add-bestiary");
+
       bestiaryAdded.innerText = `${monsterName} has been added to your bestiary`;
     } else {
+      bestiaryAdded.classList.add("alert-add-bestiary");
+      bestiaryAdded.classList.remove("confirm-add-bestiary");
+
       bestiaryAdded.innerText = `${monsterName} is already in the bestiary`;
     }
   });
@@ -119,6 +126,13 @@ function loadSavedMonster() {
           ".note-text"
         ).innerText = `You have removed ${monsterName}`;
         console.log(localStorage.length);
+
+        if (localStorage.length === 0) {
+          bestiaryAdded.innerText = "";
+          document.querySelector(
+            ".note-text"
+          ).innerText = `The bestiary is empty`;
+        }
       });
 
       if (alignment.includes("evil") || alignment.includes("non-good")) {
@@ -187,6 +201,8 @@ function getFetch() {
       actionsContainer.innerText = "";
       legendaryActionsContainer.innerText = "";
       displayNotesContainer.innerText = "";
+      bestiaryAdded.classList.remove("alert-add-bestiary");
+      bestiaryAdded.classList.remove("confirm-add-bestiary");
 
       actionTitle.innerText = "";
       document.querySelector(".condition-immunity").innerText = "";
@@ -345,7 +361,9 @@ function getFetch() {
         legendaryActionStyle.classList.remove("container-style");
       }
       //style for players notes here
-      notesDisplay.style.background;
+
+      noteStrong.innerText = "Notes:";
+
       // Stop
     })
 
@@ -493,7 +511,6 @@ function createTextArea(monster) {
 
   if (savedNote) {
     notesDisplay.innerText = savedNote;
-    notesDisplay.classList.add("border");
     textArea.value = savedNote;
     textArea.disabled = true;
     button.disabled = true;
@@ -523,17 +540,23 @@ function createTextArea(monster) {
       textArea.disabled = true;
       button.disabled = true;
       button.style.display = "none";
+      document
+        .querySelector(".note-saved-message")
+        .classList.add("note-saved-message-saved");
       document.querySelector(".note-saved-message").innerText =
-        "Note Has Been Saved";
+        "The Note Has Been Saved";
       editButton.style.display = "inline";
     } else {
       localStorage.setItem(`${theMonster}`, noteText);
       textArea.disabled = true;
       button.disabled = true;
       button.style.display = "none";
+      document
+        .querySelector(".note-saved-message")
+        .classList.add("note-saved-message-saved");
       editButton.style.display = "inline";
       document.querySelector(".note-saved-message").innerText =
-        "Note Has Been Edited";
+        "The Note Has Been Edited";
     }
   }
 }
