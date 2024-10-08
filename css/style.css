@@ -345,9 +345,28 @@ ul h4 {
 }
 
 .note-text {
-  font-size: 1.2em;
+  font-size: 1.1em;
   margin-top: 20px;
   margin-left: 20px;
+}
+
+.note-text-remove {
+  background-color: #d10e0e;
+  color: white;
+  width: 400px;
+  text-align: center;
+  padding: 8px 3px;
+  width: fit-contents;
+}
+
+.note-text-reset {
+  background-color: #d10e0e;
+  color: white;
+  width: 300px;
+  text-align: center;
+  padding: 12px 0;
+  border-radius: 10px;
+  width: fit-contents;
 }
 
 .note-saved-message-saved {

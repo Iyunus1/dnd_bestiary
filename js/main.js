@@ -9,6 +9,8 @@ const actionsContainer = document.querySelector(".actions-container");
 let searchContainer = document.querySelector(".search-creature");
 let displayNotesContainer = document.querySelector(".display-notes");
 const noteStrong = document.querySelector(".note-bold");
+let savedNotesStyle = document.querySelector(".note-saved-message");
+let removedDisplay = document.querySelector(".note-text");
 
 const legendaryActionsContainer = document.querySelector(
   ".legendary-actions-container"
@@ -122,16 +124,16 @@ function loadSavedMonster() {
         localStorage.removeItem(`alignment_${monsterName}`);
         localStorage.removeItem(`image_${monsterName}`);
         container.remove();
-        document.querySelector(
-          ".note-text"
-        ).innerText = `You have removed the ${monsterName}`;
+
+        let noteText = document.querySelector(".note-text");
+
+        noteText.classList.add("note-text-remove");
+        noteText.innerText = `The ${monsterName} has been removed from the bestiary`;
         console.log(localStorage.length);
 
         if (localStorage.length === 0) {
           bestiaryAdded.innerText = "";
-          document.querySelector(
-            ".note-text"
-          ).innerText = `The bestiary is empty`;
+          noteText.innerText = `The bestiary is empty`;
         }
       });
 
@@ -163,9 +165,9 @@ function loadSavedMonster() {
       localStorage.clear();
       bestiaryAdded.innerText = "";
       displayNotesContainer.innerText = "";
-      document.querySelector(
-        ".note-text"
-      ).innerText = `You have reset the bestiary`;
+      document.querySelector(".note-text").classList.remove("note-text-reset");
+      document.querySelector(".note-text").classList.add("note-text-reset");
+      document.querySelector(".note-text").innerText = `Bestiary Reset`;
     });
   }
 }
@@ -203,6 +205,8 @@ function getFetch() {
       displayNotesContainer.innerText = "";
       bestiaryAdded.classList.remove("alert-add-bestiary");
       bestiaryAdded.classList.remove("confirm-add-bestiary");
+      savedNotesStyle.classList.remove("note-saved-message-saved");
+      removedDisplay.classList.remove("note-text-remove");
 
       actionTitle.innerText = "";
       document.querySelector(".condition-immunity").innerText = "";
@@ -210,8 +214,9 @@ function getFetch() {
       document.querySelector(".languages").innerText = "";
       document.querySelector(".damage").innerText = "";
       document.querySelector(".condition").innerText = "";
-      document.querySelector(".note-text").innerText = notesDisplay.innerText =
-        "";
+      document.querySelector(".note-text").innerText = "";
+      document.querySelector(".note-saved-message").innerText = "";
+      notesDisplay.innerText = "";
 
       document.querySelector("h2").innerText = data.name;
       document.querySelector("h2").style.textDecoration = "underline";
@@ -528,6 +533,7 @@ function createTextArea(monster) {
     button.textContent = "Save Note";
     button.style.display = "inline";
     editButton.style.display = "none";
+    savedNotesStyle.classList.remove("note-saved-message-saved");
   }
 
   function saveValue() {
