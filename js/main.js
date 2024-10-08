@@ -215,7 +215,7 @@ function getFetch() {
       document.querySelector(".damage").innerText = "";
       document.querySelector(".condition").innerText = "";
       document.querySelector(".note-text").innerText = "";
-      document.querySelector(".note-saved-message").innerText = "";
+
       notesDisplay.innerText = "";
 
       document.querySelector("h2").innerText = data.name;
@@ -491,7 +491,7 @@ function objectPropertyDom(data, stringValue, htmlElement, className) {
 function createTextArea(monster) {
   const theMonster = monster;
   // Create text area
-  document.querySelector(".note-saved-message").innerText = "";
+  savedNotesStyle.innerText = "";
   textAreaContainer.innerText = "";
 
   const textArea = document.createElement("textarea");
@@ -546,23 +546,17 @@ function createTextArea(monster) {
       textArea.disabled = true;
       button.disabled = true;
       button.style.display = "none";
-      document
-        .querySelector(".note-saved-message")
-        .classList.add("note-saved-message-saved");
-      document.querySelector(".note-saved-message").innerText =
-        "The Note Has Been Saved";
+      savedNotesStyle.classList.add("note-saved-message-saved");
+      savedNotesStyle.innerText = "The Note Has Been Saved";
       editButton.style.display = "inline";
     } else {
       localStorage.setItem(`${theMonster}`, noteText);
       textArea.disabled = true;
       button.disabled = true;
       button.style.display = "none";
-      document
-        .querySelector(".note-saved-message")
-        .classList.add("note-saved-message-saved");
+      savedNotesStyle.classList.add("note-saved-message-saved");
       editButton.style.display = "inline";
-      document.querySelector(".note-saved-message").innerText =
-        "The Note Has Been Edited";
+      savedNotesStyle.innerText = "The Note Has Been Edited";
     }
   }
 }
