@@ -124,7 +124,7 @@ function loadSavedMonster() {
         container.remove();
         document.querySelector(
           ".note-text"
-        ).innerText = `You have removed ${monsterName}`;
+        ).innerText = `You have removed the ${monsterName}`;
         console.log(localStorage.length);
 
         if (localStorage.length === 0) {

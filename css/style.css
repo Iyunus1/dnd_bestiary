@@ -242,7 +242,7 @@ ul h4 {
   margin-left: 20px;
   margin-right: 20px;
   display: flex;
-  gap: 1.2%;
+  gap: 1.8%;
   flex-wrap: wrap;
   align-items: flex-start;
 }
@@ -255,6 +255,7 @@ ul h4 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   margin-top: 15px;
   border: 2.3px solid #d1b38a;
   padding: 20px;
@@ -262,12 +263,45 @@ ul h4 {
   text-align: center;
   border-radius: 12px;
   max-width: 300px;
+  min-width: 340px;
+  min-height: 400px;
+  flex-grow: 1;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease-in-out;
 }
 
 .monster-card:hover {
   transform: scale(1.03);
+}
+
+.monster-note {
+  font-family: "Merriweather", serif;
+  font-size: 16px;
+  color: #333;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* subtle background for contrast */
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 12px;
+  width: 100%;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* subtle inner shadow for depth */
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.monster-thumbnail {
+  width: 150px;
+  height: 150px; /* Preserve aspect ratio */
+  object-fit: cover;
+  border: 2px solid #3a1d08; /* Dark brown border for a 'bestiary' feel */
+  border-radius: 10px; /* Slight rounding of the corners */
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow for depth */
+  margin: 0;
+  margin-bottom: 10px; /* Space between the image and text/other elements */
 }
 
 .monster-card > p {
@@ -302,16 +336,6 @@ ul h4 {
   margin: 0 0 15px 0;
 }
 
-.monster-thumbnail {
-  width: 120px;
-  height: auto; /* Preserve aspect ratio */
-  border: 2px solid #3a1d08; /* Dark brown border for a 'bestiary' feel */
-  border-radius: 8px; /* Slight rounding of the corners */
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow for depth */
-  margin: 0;
-  margin-bottom: 10px; /* Space between the image and text/other elements */
-}
-
 .remove-all {
   background-color: #d10e0e;
   color: white;
@@ -324,26 +348,6 @@ ul h4 {
   font-size: 1.2em;
   margin-top: 20px;
   margin-left: 20px;
-}
-
-.monster-note {
-  font-family: "Merriweather", serif;
-  font-size: 16px;
-  color: #333;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* subtle background for contrast */
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 12px;
-  width: auto;
-  max-width: 100%;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* subtle inner shadow for depth */
-  word-wrap: break-word; /* Break long words to prevent overflow */
-  overflow-wrap: break-word; /* For wider browser support */
 }
 
 .note-saved-message-saved {
